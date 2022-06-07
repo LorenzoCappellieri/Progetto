@@ -126,7 +126,10 @@ public class DBDirettore_commerciale {
 			LocalDate today2 = LocalDate.now();
 			ZoneId defaultZoneId = ZoneId.systemDefault();
 			Date today = Date.from(today2.atStartOfDay(defaultZoneId).toInstant());
+			int i = 0;
+			int j = 0;
 			do{
+				i = 0;
 				System.out.println("Inserisci la data d'inizio (yyyy-mm-dd) da quando vuoi sapere le analytics di questa città");
 				Scanner tastiera1 = new Scanner(System.in);
 				data1 = tastiera1.nextLine();
@@ -134,16 +137,19 @@ public class DBDirettore_commerciale {
 				data_inizio=new SimpleDateFormat("yyyy-mm-dd").parse(data1);
 				}catch (ParseException e) {
 					System.out.println("La data inserita non è valida");
+					i++;
 				}
 				if(data_inizio.compareTo(today) > 0)
 				{
 					System.out.println("La data inserita non è valida");
+					i++;
 				}	
-			}while(data_inizio.compareTo(today) > 0);
+			}while(i != 0);
 
 			String data2 = new String();
 			Date data_fine = new Date();
 			do{
+				j =0;
 				System.out.println("Inserisci la data di fine (yyyy-mm-dd) da quando vuoi sapere le analytics di questa città");
 				Scanner tastiera2 = new Scanner(System.in);
 				data2 = tastiera2.nextLine();
@@ -151,11 +157,13 @@ public class DBDirettore_commerciale {
 				data_fine=new SimpleDateFormat("yyyy-mm-dd").parse(data2);
 				}catch (ParseException e){
 					System.out.println("La data inserita non è valida");
+					j++;
 				}
 				if(data_fine.compareTo(today) > 0){
 					System.out.println("La data inserita non è valida");
+					j++;
 				}
-			}while(data_fine.compareTo(today) > 0);
+			}while(j != 0);
 
 			if(data_fine.compareTo(data_inizio) < 0){
 				Date a; 
